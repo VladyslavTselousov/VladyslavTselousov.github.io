@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Car rotation</title>
+    <style>
+        .card {
+		perspective: 800px;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d; /* дочерние элементы должны отображаться в 3D пространстве */
+        }
+
+        .back, .front {
+			
+            position: absolute;
+            width: 640px;
+            height: 360px;
+            -moz-transition: all .8s;
+            -o-transition: all .8s;
+            -webkit-transition: all .8s;
+            transition: all .8s;
+			border-radius: 10px;
+        }
+
+        .back  {
+            font-size: 2em;	
+			font-family: 'Special Elite', cursive;
+			color: #00364a;
+			text-align: center;
+			background-color: #949494;
+			
+        }
+
+        .front {
+            background-image: url(front.jpg);
+        
+            -moz-transform: rotate3d(0,1,0, -180deg);
+            -ms-transform: rotate3d(0,1,0, -180deg);
+            -o-transform: rotate3d(0,1,0, -180deg);
+            -webkit-transform: rotate3d(0,1,0, -180deg);
+            transform: rotate3d(0,1,0, -180deg);
+        }
+
+        .card:hover .back {
+            -moz-transform: rotate3d(0,1,0, 180deg);
+            -ms-transform: rotate3d(0,1,0, 180deg);
+            -o-transform: rotate3d(0,1,0, 180deg);
+            -webkit-transform: rotate3d(0,1,0, 180deg);
+            transform: rotate3d(0,1,0, 180deg);
+			
+        }
+
+        .card:hover .front {
+            -moz-transform: rotate3d(0,1,0, 0deg);
+            -ms-transform: rotate3d(0,1,0, 0deg);
+            -o-transform: rotate3d(0,1,0, 0deg);
+            -webkit-transform: rotate3d(0,1,0, 0deg);
+            transform: rotate3d(0,1,0, 0deg);
+			
+        }
+
+        .backface .back, .backface .front {
+            -moz-backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden; /* определяет будет ли видно контент элемента, который с помощью 3d трансформаций отвернут лицом от пользователя */
+        }
+    </style>
+</head>
+<body>
+    <div class="card backface">
+        <div class="back">
+			<p>
+				Продам авто<br/>
+				Renault megane II<br/>
+				2007 р., 1.6 бензин, 115 к.с.<br/>
+				тел. 099-123-44-55	
+			</p>	
+		</div>
+        <div class="front"></div>
+    </div>
+</body>
+</html>
