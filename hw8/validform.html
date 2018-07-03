@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>valid</title>
+    <meta charset="UTF-8" />
+    <script type="text/javascript">       
+		 window.onload = function() {
+			//Getting all input text objects 
+		    var name = document.forms[0].name;
+            var email = document.forms[0].email;
+            var phone = document.forms[0].phone;
+            var password = document.forms[0].password;
+            var RePassword = document.forms[0].RePassword;
+			var state = form.state.value;
+			var btn = document.forms[0].btn1;
+			//var btn = document.getElemetsByClassName("button")[0];	
+			//var hrname = document.getElementById('hrname');
+		//	var state = document.forms[0].state;
+      
+            var adr_pattern = /[0-9a-z_]+@[0-9a-z_]+\.[a-z]{2,5}/i;
+            var phone_pattern = /^([\+]+)*[0-9\x20\x28\x29\-]{5,20}$/;
+			//Getting all error display objects
+			var name_error = document.getElementById("name_error");
+			var email_error = document.getElementById("email_error");
+			var phone_error = document.getElementById("phone_error");
+			var password_error = document.getElementById("password_error");
+			var Repassword_error = document.getElementById("Repassword_error");
+		//	var state_error = document.getElementById("state_error");
+			console.log(state);
+			//Setting all event listreners
+			name.addEventListener("blur", nameVerify, true);
+			email.addEventListener("blur", emailVerify, true);
+			phone.addEventListener("blur", phoneVerify, true);
+			password.addEventListener("blur", passwordVerify, true);
+			RePassword.addEventListener("blur", RePasswordVerify, true);
+			//state.addEventListener("blur", state, true);
+			//console.log(document.forms[0].name);
+		//	var state = form.state.value;
+			//Validate function
+			
+			function stateVerify(){
+				if(state!=""){
+				state_error.textContent = "";
+				return true;
+				}
+			} 
+			
+			 Validate = function(){ 
+			 
+			 stateVerify();
+					//name validation
+				if (name.value == "" || name.value == " "){
+					//name.style.border = "1 px solid red";
+					
+					//document.getElementById("hrname").style.borderTopColor = "red";
+					document.getElementById("hrname").style.color = "#f37a7a";
+					
+					
+					//hrname.style.color = "2px solid red";
+					
+					
+					name_error.textContent = "Ви не ввели своє ім'я";
+					btn.classList.add("swing");
+					name.focus();
+					return false;
+				}	
+				
+					//email validation
+				else if (adr_pattern.test(email.value) == false){
+				//	email.style.border = "1 px solid red";
+					document.getElementById("hremail").style.color = "#f37a7a";
+					email_error.textContent = "Ви ввели email неправильно";
+					btn.classList.add("swing");
+					email.focus();
+					return false;
+				}	
+					//phone validation
+				else if (phone_pattern.test(phone.value) == false){
+				//	phone.style.border = "1 px solid red";
+					document.getElementById("hrphone").style.color = "#f37a7a";
+					phone_error.textContent = "Ви ввели номер телефону неправильно";
+
+					phone.focus();
+					return false;
+				}	
+					//password validation
+				else if (password.value == ""){
+					//password.style.border = "1 px solid red";
+					document.getElementById("hrpassword").style.color = "#f37a7a";
+					password_error.textContent = " Ви не ввели свій пароль";
+					btn.classList.add("swing");
+					password.focus();
+					return false;
+				}
+					//Ressword validation	
+				else if (password.value != RePassword.value){
+					//RePassword.style.border = "1px solid red";
+					document.getElementById("hrRepassword").style.color = "#f37a7a";
+					Repassword_error.textContent = "Паролі не співпадають";
+					btn.classList.add("swing");
+					RePassword.focus();
+					return false;
+				}	
+				
+					//state validation
+				else if(state==""){
+					state_error.textContent = "Укажіть стать";
+					btn.classList.add("swing");
+					
+		
+					return false;
+				}
+		
+			}		
+
+				  /*  var span = document.createElement('span');
+					document.body.appendChild(span);
+					document.write(span)*/
+				//else
+				//	windows.location = "http://google.com";
+			function nameVerify(){
+				if (name.value != "" || name.value != " "){
+				//	name.style.border = "1px solid silver";
+					document.getElementById("hrname").style.color = "#bdf37a";
+					//hrname.style.color = "1px solid #5E6E66";
+					name_error.textContent = "";
+					return true;
+				}
+			}
+		  function emailVerify(){
+				if (adr_pattern.test(email.value)== true){
+					//email.style.border = "1px solid #5E6E66";
+					document.getElementById("hremail").style.color = "#bdf37a";
+					email_error.textContent = "";
+					return true;
+				}
+			}
+			function phoneVerify(){
+				if (phone_pattern.test(phone.value) == true){
+					//phone.style.border = "1px solid #5E6E66";
+					document.getElementById("hrphone").style.color = "#bdf37a";
+					phone_error.textContent = "";
+					return true;
+				}
+			}
+			function passwordVerify(){
+				if (password.value != ""){
+					//password.style.border = "1px solid #5E6E66";
+					document.getElementById("hrpassword").style.color = "#bdf37a";
+					password_error.textContent = "";
+					return true;
+				}
+			}
+			function RePasswordVerify(){
+				if (password.value == RePassword.value){
+				//	RePassword.style.border = "1px solid #5E6E66";
+					document.getElementById("hrRepassword").style.color = "#bdf37a";
+					RePassword_error.textContent = "";
+					return true;
+				}
+			}
+			
+			
+			 //<label for="name">Ім'я</label>placeholder="Ім'я"
+	 	}	
+    </script>
+    <style>
+		#wrapper{
+		
+		}
+        form {
+            width: 25%;
+			margin-left: 37%;
+			margin-top: 0;
+            float: left;
+        }
+        form label {
+            float: left;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        form input {
+		border: none;
+           /* border-radius: 5px; 
+          border: 2px solid silver;*/
+            padding: 5px;
+            float: left;
+            clear: both;
+            margin-top: 10px;
+            width: 100%;
+							
+        }		
+		form input:invalid {
+			box-shadow: none;
+		}
+		
+        /*form input:focus {
+            border: 2px solid #f58b8b;
+        } */
+		
+		hr {
+			color: solid silver;
+			width: 100%;
+			size: 2px;
+			float: left;
+		
+		}
+		
+		.button {
+            float: left;
+            padding: 5px;
+            margin-top: 30px;
+            background-color: #f37a7a;
+            font-size: 2em;
+            color: #fff;
+            cursor: pointer;
+            height: 55px;
+			border-radius: 5px; 
+			border: 2px solid #f37a7a;
+        }
+        .button:hover {
+            background-color: #bdf37a;
+        }
+		form span{
+			margin: 3px auto;
+		}
+		.val_error{
+		
+			position: absolute;
+			color: #f37a7a;
+			font-family: Arial, sans-serif;
+			font-size: 12px;
+		}
+		.wrapper1 { position: relative;
+					
+					}
+
+		.control:focus ~ .floating-label,
+		.control:not(:focus):valid ~ .floating-label{
+		  border: none;
+		  outline: none;
+		  top: 4px;
+		  left: 5px;
+		  font-size: 11px;
+		  color: #b2b2b2;
+		  opacity: 0.6;
+		}
+
+		.control {			
+		  font-size: 14px;
+		    border: none;
+		 outline: none;
+		  border-radius: 5px;
+			
+           /* border: 2px solid silver;*/
+            padding: 5px;
+            float: left;
+            clear: both;                   
+		}
+
+		.floating-label {
+		  border: none;
+		  outline: none;
+		  margin-left:37%;
+		 color: #7b7b7b;
+		  position: absolute;
+		  pointer-events: none;
+		  left: 5px;
+		  top: 14px;
+		  transition: 0.4s ease all;
+		}
+		#flname{
+		margin-top: 10px;
+		}
+		
+		#flemail{
+		margin-top: 75px;
+		}
+		#flphone{
+		margin-top: 140px;
+		}
+		#flpassword{
+		margin-top: 205px;
+		}
+		#flRepassword{
+		margin-top: 270px;
+		}
+		
+		#name_error{
+		margin-top: 27px;
+		}
+		#email_error{
+		margin-top: 55px;
+		}
+		#phone_error{
+		margin-top: 79px;
+		margin-left: -335px;
+		}
+		#password_error{
+		margin-top: 105px;
+		margin-left: -335px;
+		}
+		#Repassword_error{
+		margin-top: 135px;
+		margin-left: -328px;
+		}
+		#state_error{
+		margin-top: 114px;
+		margin-left: -100px;
+		}
+		#female {
+		margin-top: -55px;
+		}
+		#male {
+		margin-top: -25px;
+		}
+		#hrRepassword{
+			margin-bottom: 30px;
+		}
+		.swing{
+			transition: all 0.3s ease;
+  			animation: swing 0.6s ease;   
+   			animation-iteration-count: 1;
+		}
+		@keyframes swing {
+			  15% {
+			    -webkit-transform: translateX(9px);
+			    transform: translateX(9px);
+			  }
+			  30% {
+			    -webkit-transform: translateX(-9px);
+			    transform: translateX(-9px);
+			  }
+			  40% {
+			    -webkit-transform: translateX(6px);
+			    transform: translateX(6px);
+			  }
+			  50% {
+			    -webkit-transform: translateX(-6px);
+			    transform: translateX(-6px);
+			  }
+			  65% {
+			    -webkit-transform: translateX(3px);
+			    transform: translateX(3px);
+			  }
+			  100% {
+			    -webkit-transform: translateX(0);
+			    transform: translateX(0);
+			  }
+			}
+    </style>
+</head>
+<body>
+	<div id="wrapper">
+		<form novalidate action="" name="test" id="form" onsubmit="return Validate()">			
+			<div class="wraper1">
+			<input type="text" name="name"  id="name" class="control" required="1"
+			oninvalid="this.setCustomValidity('Введіть своє імя')" oninput="setCustomValidity('')"/></br>
+			<hr id="hrname" name="hrname" />
+			<span class="floating-label" id="flname">Введіть своє і'мя</span>
+			</div>
+			<div id = "name_error" class = "val_error"></div>
+			</br>
+			<div>
+			<label for="email"></label>
+			<input type="text" name="email" placeholder="" id="email" class="control" required="required"
+			oninvalid="this.setCustomValidity('Введіть свій email')" oninput="setCustomValidity('')"/></br>
+			<hr id="hremail">
+			<span class="floating-label" id="flemail">Введіть свій email</span>			
+			<div id = "email_error" class = "val_error"></div>
+			</br>
+			</div>
+			<div>
+			<label for="phone"></label>
+			<input type="text" name="phone" placeholder="" id="phone" class="control" required="1"
+			oninvalid="this.setCustomValidity('+380123456789')" oninput="setCustomValidity('')"/></br>
+			<hr id="hrphone">
+			<span class="floating-label" id="flphone">Введіть свій телефон</span>
+			<span id = "phone_error" class = "val_error"></span>
+			</br>
+			</div>
+			<div>
+			<label for="password"></label>
+			<input type="password" name="password" placeholder="" id="password" class="control" required="1"
+			oninvalid="this.setCustomValidity('Введіть свій пароль')" oninput="setCustomValidity('')"/></br>
+			<hr id="hrpassword">
+			<span class="floating-label" id="flpassword">Введіть свій пароль</span>
+			<span id = "password_error" class = "val_error"></span>
+			</br>
+			</div>
+			<label for="RePassword"></label>
+			<input type="password" name="RePassword" placeholder="" id="RePassword" class="control" required="1"
+			oninvalid="this.setCustomValidity('Продублюйте пароль')" oninput="setCustomValidity('')"/></br>
+			<hr id="hrRepassword">
+			<span class="floating-label" id="flRepassword">Продублюйте пароль</span>
+			<span id = "Repassword_error" class = "val_error"></span>
+			</br>
+			<div class="radio">
+			<label for="female">Пол женский</label>
+			<label for="male">Пол мужской</label>			
+			<input type="radio" name="state" value="Женский" id="female"/>
+			<input type="radio" name="state" value="Мужской" id="male"/>			
+			<span id = "state_error" class = "val_error"></span>
+			</div>
+			<input type="submit" class="button" id="btn1" name="submit" value="Готово" />
+		</form>
+	</div>
+</body>
+</html>
